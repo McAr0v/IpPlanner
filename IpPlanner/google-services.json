@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "878318944128",
+    "firebase_url": "https://ipplanner-4ca92-default-rtdb.firebaseio.com",
+    "project_id": "ipplanner-4ca92",
+    "storage_bucket": "ipplanner-4ca92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878318944128:android:8ba8fd960cf2e7574e4b65",
+        "android_client_info": {
+          "package_name": "com.ipplanner.ipplanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARoqME43rFRS4ZgfYzwJD9W8KToFdtg40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

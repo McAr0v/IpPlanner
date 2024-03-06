@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using IpPlanner.DataBase.Auth;
+using Microsoft.Extensions.Logging;
 
 namespace IpPlanner
 {
@@ -19,6 +20,9 @@ namespace IpPlanner
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            // Инициализируем некоторыми настройками текущего пользователя
+            CustomUser.SetUser(AuthInDataBase.setUser());
 
             return builder.Build();
         }

@@ -12,8 +12,8 @@ namespace IpPlanner
 
             
 
-            //MainPage = new UserScreen();
-            MainPage = new RegistrationPage();
+            MainPage = new UserScreen();
+            //MainPage = new RegistrationPage();
         }
     }
 }

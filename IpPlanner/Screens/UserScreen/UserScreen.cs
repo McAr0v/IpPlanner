@@ -106,11 +106,12 @@ namespace IpPlanner.Screens.UserScreen
                 };
 
                 // Создание новой записи в базе данных Firebase
-                var newItem = await firebase
+                await firebase
                     .Child("Test") // Указываем узел, куда хотим записать данные
                     .PostAsync(newData); // Отправляем объект данных в базу данных Firebase
+                    //.PutAsync(newData); // Отправляем объект данных в базу данных Firebase
 
-                await DisplayAlert("Success", $"Record created with key: {newItem.Key}", "OK");
+                await DisplayAlert("Success", $"Record created with key:", "OK");
             }
             catch (Exception ex)
             {

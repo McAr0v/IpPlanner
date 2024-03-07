@@ -1,4 +1,5 @@
 ﻿using Firebase.Database;
+using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +12,64 @@ namespace IpPlanner.DataBase.DbManager
     {
         FirebaseClient firebase = new FirebaseClient("https://ipplanner-4ca92-default-rtdb.firebaseio.com");
 
-        /*private async void PublishToDb()
+        private async Task PublishToDb<T>(T publishData, string path)
         {
             try
             {
-                var newData = new YourDataClass
-                {
-                    Property1 = "Value1",
-                    Property2 = "Value2"
-                };
+                await firebase
+                        .Child(path) // Указываем узел, куда хотим записать данные
+                        .PutAsync(publishData); // Отправляем объект данных в базу данных Firebase
 
-                // Создание новой записи в базе данных Firebase
-                var newItem = await firebase
-                    .Child("Test") // Указываем узел, куда хотим записать данные
-                    .PutAsync(newData); // Отправляем объект данных в базу данных Firebase
-
-                await DisplayAlert("Success", $"Record created with key: {newItem.Key}", "OK");
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                Console.WriteLine(ex.Message);
             }
-        }*/
+        }
+
+
+        public static async void PublishInDb<T>(T publishData, string path)
+        {
+
+            DbManager dbManager = new DbManager();
+
+            await dbManager.PublishToDb(publishData, path);
+        }
+
+
+        public static string GenerateKey() 
+        {
+            Guid guid = Guid.NewGuid();
+            return guid.ToString();
+        }
+
+
+
+
+
+
+        private async Task<IReadOnlyCollection<FirebaseObject<T>>?> GetDataFromDB<T>(string path)
+        {
+            try
+            {
+                // Получаем данные из узла "Test"
+                var dataSnapshot = await firebase.Child(path).OnceAsync<T>();
+
+                return dataSnapshot;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static async Task<IReadOnlyCollection<FirebaseObject<T>>?> GetFromDB<T>(string path)
+        {
+
+            DbManager dbManager = new DbManager();
+
+            return await dbManager.GetDataFromDB<T>(path);
+        }
     }
 }

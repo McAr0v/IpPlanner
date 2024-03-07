@@ -1,12 +1,9 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using IpPlanner.DataBase.DbManager;
 using IpPlanner.Design.Buttons;
 using IpPlanner.Design.Colors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace IpPlanner.Screens.UserScreen
 {
@@ -105,11 +102,8 @@ namespace IpPlanner.Screens.UserScreen
                     Property2 = "Value2"
                 };
 
-                // Создание новой записи в базе данных Firebase
-                await firebase
-                    .Child("Test") // Указываем узел, куда хотим записать данные
-                    .PostAsync(newData); // Отправляем объект данных в базу данных Firebase
-                    //.PutAsync(newData); // Отправляем объект данных в базу данных Firebase
+
+                DbManager.PublishInDb(newData, $"Test/{DbManager.GenerateKey()}");
 
                 await DisplayAlert("Success", $"Record created with key:", "OK");
             }
@@ -121,11 +115,13 @@ namespace IpPlanner.Screens.UserScreen
 
         private async void ReadDataFromFirebase(object sender, EventArgs e)
         {
-            try
-            {
-                // Получаем данные из узла "Test"
-                var dataSnapshot = await firebase.Child("Test").OnceAsync<YourDataClass>();
 
+            var dataSnapshot = await DbManager.GetFromDB<YourDataClass>("Test");
+
+            if (dataSnapshot != null)
+            {
+                ClearLabels(sender, e);
+                //dataList.Clear();
                 // Перебираем полученные данные
                 foreach (var data in dataSnapshot)
                 {
@@ -143,17 +139,17 @@ namespace IpPlanner.Screens.UserScreen
 
                 UpdateLabels();
 
+                await DisplayAlert("Считывание успешно!", "Мы успешно считали данные!", "OK");
             }
-            catch (Exception ex)
+            else
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlert("Произошла ошибка считывания", "Что-то пошло не так и данные не считались", "OK");
             }
         }
 
         private void UpdateLabels()
         {
-            // Очищаем старые метки
-            //stackLayout.Children.Clear();
+
             int counter = 0;
             // Добавляем метки для каждого элемента в dataList
             foreach (var data in dataList)

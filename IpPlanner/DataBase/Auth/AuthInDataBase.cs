@@ -13,6 +13,8 @@ namespace IpPlanner.DataBase.Auth
     internal class AuthInDataBase
     {
 
+        // Конфигурация подключения к сервису авторизации
+
         private static readonly FirebaseAuthConfig config = new FirebaseAuthConfig
         {
             ApiKey = "AIzaSyARoqME43rFRS4ZgfYzwJD9W8KToFdtg40",
@@ -22,10 +24,10 @@ namespace IpPlanner.DataBase.Auth
                     new EmailProvider()
                 },
             // Локальная директория для сохранения данных о пользователе
-            UserRepository = new FileUserRepository("FirebaseSample") // Persist data into %AppData%\FirebaseSample
+            UserRepository = new FileUserRepository("UserData") // Persist data into %AppData%\FirebaseSample
         };
 
-
+        // Клиент сервиса авторизации
         private static readonly FirebaseAuthClient client = new FirebaseAuthClient(config);
 
         // Функция, заполняющая Current User при инициализации приложения
@@ -40,7 +42,8 @@ namespace IpPlanner.DataBase.Auth
                     email: client.User.Info.Email,
                     phone: "",
                     organizationName: "",
-                    uid: client.User.Info.Uid
+                    uid: client.User.Info.Uid,
+                    gender: ""
                 );
             }
             else return null;
@@ -75,13 +78,16 @@ namespace IpPlanner.DataBase.Auth
             }
         }
 
+        // Функция выхода из профиля
         public static void SignOut()
         {
 
             client.SignOut();
-            CustomUser.SetCurrentUser(firstName: "", lastName: "", phone: "", organizationName: "", uid: "", email: "");
+            CustomUser.SetCurrentUser(firstName: "", lastName: "", phone: "", organizationName: "", uid: "", email: "", gender: "");
 
         }
+
+        // Функция входа в профиль
 
         public static async Task<string> SignIn(String email, String password)
         {
@@ -98,7 +104,7 @@ namespace IpPlanner.DataBase.Auth
                 // Проверяем успешность регистрации
                 if (uidUser != null && user != null)
                 {
-                    CustomUser.SetCurrentUser(firstName: user.Info.FirstName, lastName: user.Info.LastName, email: user.Info.Email, uid: uidUser, phone: "", organizationName: "");
+                    CustomUser.SetCurrentUser(firstName: user.Info.FirstName, lastName: user.Info.LastName, email: user.Info.Email, uid: uidUser, phone: "", organizationName: "", gender: "");
                     return "ok";
                 }
                 else
@@ -112,8 +118,5 @@ namespace IpPlanner.DataBase.Auth
 
             }
         }
-
-
-
     }
 }

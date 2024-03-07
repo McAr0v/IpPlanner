@@ -19,7 +19,7 @@ namespace IpPlanner.Screens.UserScreen
         private Button signOutButton;
         private Button signInButton;
         private Label label;
-        private CustomUser user;
+        private CustomUser? user;
         private StackLayout allStack;
 
         public RegistrationPage()

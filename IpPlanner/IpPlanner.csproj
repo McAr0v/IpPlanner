@@ -60,11 +60,40 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\chart_simple_solid.png" />
+	  <None Remove="Resources\Images\file_invoice_dollar_solid.png" />
+	  <None Remove="Resources\Images\list_check_solid.png" />
+	  <None Remove="Resources\order_one.png" />
+	  <None Remove="Resources\stat_one.png" />
+	  <None Remove="Resources\task_one.png" />
+	  <None Remove="Resources\user-solid.png" />
+	  <None Remove="Resources\user_one.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\Images\user_solid.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Resources\order_one.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Resources\stat_one.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Resources\task_one.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Resources\user_one.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

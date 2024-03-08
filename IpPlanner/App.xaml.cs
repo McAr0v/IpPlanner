@@ -10,50 +10,29 @@ namespace IpPlanner
         {
             InitializeComponent();
 
+            CustomUser? user = CustomUser.GetCurrentUser();
 
-
-            /*var shell = new Shell();
-
-            shell.Items.Add(new Tab()
+            if (user != null) 
             {
-                //FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
-                Title = "Page One",
-                Items =
-                {
-                    new ShellContent() { Content = new RegistrationPage() }
-                }
-            });
-
-            shell.Items.Add(new Tab()
+                MainPage = new AppShell();
+            } 
+            else 
             {
-                FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
-                Title = "Page Two",
-                FlyoutIcon = "Icons/user-solid.svg",
-                
-                Items =
-                {
-                    new ShellContent() { Content = new UserScreen() }
-                }
-            });
-
-            shell.Items.Add(new Tab()
-            {
-                FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
-                Title = "Page Three",
-                Items =
-                {
-                    new ShellContent() { Content = new UserScreen() }
-                }
-            });
-
-
-
-            MainPage = shell;*/
-
-            //MainPage = new UserScreen();
-            //MainPage = new RegistrationPage();
-
-            MainPage = new AppShell();
+                MainPage = new LogInScreen();
+            }
         }
+
+        public void NavigateToMainPage()
+        {
+            MainPage = new AppShell(); // Установка AppShell как главной страницы
+        }
+
+        public void NavigateToProfilePage()
+        {
+            MainPage = new AppShell(); // Установка AppShell как главной страницы
+                                       // Переход на страницу профиля
+            Shell.Current.GoToAsync("//profile");
+        }
+
     }
 }

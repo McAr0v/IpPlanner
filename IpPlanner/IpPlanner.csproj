@@ -60,6 +60,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\sfprodisplay_black.ttf" />
+	  <None Remove="Resources\Fonts\sfprodisplay_regular.ttf" />
 	  <None Remove="Resources\Images\chart_simple_solid.png" />
 	  <None Remove="Resources\Images\file_invoice_dollar_solid.png" />
 	  <None Remove="Resources\Images\list_check_solid.png" />

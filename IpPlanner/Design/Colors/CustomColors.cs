@@ -8,9 +8,12 @@ namespace IpPlanner.Design.Colors
 {
     public static class CustomColors
     {
-        public static Color Blue { get; } = Color.FromArgb("#007bff"); // Синий
-        public static Color White { get; } = Color.FromArgb("#ffffff"); // Белый
-        public static Color Graphite { get; } = Color.FromArgb("#3f3f3f"); // Графитовый
-        public static Color Black { get; } = Color.FromArgb("#000000"); // Черный
+        public static Color YellowDark { get; } = Color.FromArgb("#E8BD70"); 
+        public static Color YellowLight { get; } = Color.FromArgb("#EDD185"); 
+        public static Color Black { get; } = Color.FromArgb("#000000");
+        public static Color BlackLight { get; } = Color.FromArgb("#141414"); 
+        public static Color Graphite { get; } = Color.FromArgb("#2A2A2A"); 
+        public static Color GreyLight { get; } = Color.FromArgb("#E0DEDB");  
+        public static Color White { get; } = Color.FromArgb("#ffffff");  
     }
 }

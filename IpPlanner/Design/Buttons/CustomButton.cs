@@ -16,8 +16,8 @@ namespace IpPlanner.Design.Buttons
                 case ButtonState.Primary:
                     {
 
-                        BackgroundColor = CustomColors.Blue;
-                        TextColor = CustomColors.White;
+                        BackgroundColor = CustomColors.YellowDark;
+                        TextColor = CustomColors.Black;
                         break;
 
                     }
@@ -41,7 +41,7 @@ namespace IpPlanner.Design.Buttons
 
             Text = text;
             CornerRadius = 10;
-            Padding = new Thickness(20, 10);
+            Padding = new Thickness(20, 15);
             Clicked += clickedHandler;
         }
     }

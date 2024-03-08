@@ -3,6 +3,8 @@ using Firebase.Auth;
 using Firebase.Auth.Repository;
 using IpPlanner.DataBase.Auth;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using IpPlanner.Design.Buttons;
+using IpPlanner.Design.Colors;
 
 
 
@@ -33,14 +35,16 @@ namespace IpPlanner.Screens.UserScreen
             {
                 label = new Label
                 {
-                    Text = $"Имя: {user.FirstName}, Email: {user.Email}, UID: {user.Uid}"
+                    Text = $"Имя: {user.FirstName}, Email: {user.Email}, UID: {user.Uid}",
+                    TextColor = CustomColors.White,
                 };
             }
             else 
             {
                 label = new Label
                 {
-                    Text = $"Имя: Не задано, Email: Не задано, UID: Не задано"
+                    Text = $"Имя: Не задано, Email: Не задано, UID: Не задано",
+                    TextColor = CustomColors.White,
                 };
             }
 
@@ -48,7 +52,8 @@ namespace IpPlanner.Screens.UserScreen
 
             emailEntry = new Entry { Placeholder = "Email", Keyboard = Keyboard.Email };
             passwordEntry = new Entry { Placeholder = "Password", IsPassword = true };
-            registerButton = new Button { Text = "Register" };
+            //registerButton = new Button { Text = "Register" };
+            registerButton = new CustomButton(text: "Зарегистрироваться", clickedHandler: RegisterButton_Clicked, state: ButtonState.Primary);
             signOutButton = new Button { Text = "Выйти" };
             signInButton = new Button { Text = "Войти" };
 
@@ -60,6 +65,7 @@ namespace IpPlanner.Screens.UserScreen
             allStack = new StackLayout
             {
                 Padding = new Thickness(20),
+                BackgroundColor = CustomColors.Black,
                 Spacing = 20,
                 Children =
                 {
@@ -92,7 +98,8 @@ namespace IpPlanner.Screens.UserScreen
                 user = CustomUser.GetCurrentUser();
                 label = new Label 
                 {
-                    Text = $"Имя: {user.FirstName}, Email: {user.Email}, UID: {user.Uid}"
+                    Text = $"Имя: {user.FirstName}, Email: {user.Email}, UID: {user.Uid}",
+                    TextColor = CustomColors.White,
                 };
 
                 
@@ -140,7 +147,8 @@ namespace IpPlanner.Screens.UserScreen
                 user = CustomUser.GetCurrentUser();
                 label = new Label
                 {
-                    Text = $"Имя: {user.FirstName}, Email: {user.Email}, UID: {user.Uid}"
+                    Text = $"Имя: {user.FirstName}, Email: {user.Email}, UID: {user.Uid}",
+                    TextColor = CustomColors.White,
                 };
 
 

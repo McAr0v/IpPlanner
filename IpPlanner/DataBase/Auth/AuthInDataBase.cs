@@ -83,7 +83,7 @@ namespace IpPlanner.DataBase.Auth
         {
 
             client.SignOut();
-            CustomUser.SetCurrentUser(firstName: "", lastName: "", phone: "", organizationName: "", uid: "", email: "", gender: "");
+            CustomUser.ClearUser();
 
         }
 

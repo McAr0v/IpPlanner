@@ -9,7 +9,7 @@ namespace IpPlanner.Design.Entries
 {
     public static class EntryCustom
     {
-        public static Entry CreateNewEntry(string textInPlaceholder, bool isEmail = false, bool isPassword = false) 
+        public static Entry CreateNewEntry(string textInPlaceholder, bool isEmail = false, bool isPassword = false, bool isPhone = false) 
         {
             Entry entry = new Entry() 
             {
@@ -20,6 +20,11 @@ namespace IpPlanner.Design.Entries
             };
 
             entry.IsPassword = isPassword;
+
+            if (isPhone)
+            {
+                entry.Keyboard = Keyboard.Numeric;
+            }
 
             if (isEmail) 
             {

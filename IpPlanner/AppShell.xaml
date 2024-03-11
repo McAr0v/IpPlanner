@@ -41,8 +41,10 @@
         </Tab>
     </TabBar>
 
-    <ShellContent Title="Вход"
-              Route="logIn"
-                  ContentTemplate="{DataTemplate userScreens:LogInScreen}" />
+    <ShellContent 
+              Route="reg"
+                  ContentTemplate="{DataTemplate profileScreens:RegScreen}" 
+                  Shell.TabBarIsVisible="False"
+                  />
 
 </Shell>

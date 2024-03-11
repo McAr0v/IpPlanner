@@ -10,7 +10,7 @@ namespace IpPlanner.Screens.ProfileScreens
 {
     public class ProfileScreens : ContentPage
     {
-        private CustomUser user;
+        private CustomUser? user;
         private Entry emailEntry = EntryCustom.CreateNewEntry(textInPlaceholder: "Введите ваш Email", isEmail: true);
         private Entry passwordEntry = EntryCustom.CreateNewEntry(textInPlaceholder: "Введите ваш пароль", isPassword: true);
         private CustomButton signInButton;
@@ -18,6 +18,13 @@ namespace IpPlanner.Screens.ProfileScreens
 
         public ProfileScreens()
         {
+
+            signInButton = new CustomButton(text: "Войти", state: ButtonState.Primary);
+            signInButton.Clicked += SignInButton_Clicked;
+
+            registerButton = new CustomButton(text: "Зарегистрироваться", state: ButtonState.Primary);
+            registerButton.Clicked += RegisterButton_Clicked;
+
             emailEntry = EntryCustom.CreateNewEntry(textInPlaceholder: "Введите ваш Email", isEmail: true);
             passwordEntry = EntryCustom.CreateNewEntry(textInPlaceholder: "Введите ваш пароль", isPassword: true);
 
@@ -60,8 +67,10 @@ namespace IpPlanner.Screens.ProfileScreens
                     Command = new Command(async () =>
                     {
                         AuthInDataBase.SignOut();
+                        user = CustomUser.GetCurrentUser();
                         await DisplayAlert("Success", "Вы успешно вышли!", "OK");
                         Content = GetSignInLayout();
+                        
                     }),
                     HorizontalOptions = LayoutOptions.Center
                 }
@@ -71,6 +80,7 @@ namespace IpPlanner.Screens.ProfileScreens
 
         private StackLayout GetSignInLayout()
         {
+
             signInButton = new CustomButton(text: "Войти", state: ButtonState.Primary);
             signInButton.Clicked += SignInButton_Clicked;
 
@@ -97,12 +107,46 @@ namespace IpPlanner.Screens.ProfileScreens
                     state: TextState.DescMedium
                 ),
                 new BoxView { HeightRequest = 30, BackgroundColor = CustomColors.Black },
-                emailEntry,
+
+                new StackLayout
+                {
+                    Padding = new Thickness(10),
+                    BackgroundColor = CustomColors.BlackLight,
+                    Children =
+                    {
+                        emailEntry,
+                    }
+                },
+
+
+
+                
                 new BoxView { HeightRequest = 10, BackgroundColor = CustomColors.Black },
-                passwordEntry,
+
+                new StackLayout
+                {
+                    Padding = new Thickness(10),
+                    BackgroundColor = CustomColors.BlackLight,
+                    Children =
+                    {
+                        passwordEntry,
+                    }
+                },
+                
                 new BoxView { HeightRequest = 20, BackgroundColor = CustomColors.Black },
                 signInButton,
-                new BoxView { HeightRequest = 10, BackgroundColor = CustomColors.Black },
+                new BoxView { HeightRequest = 40, BackgroundColor = CustomColors.Black },
+                TextWidget.GetTextWidget(
+                    text: "Нет аккаунта?",
+                    color: CustomColors.YellowLight,
+                    state: TextState.HeadlineMedium
+                ),
+                TextWidget.GetTextWidget(
+                    text: "Не беда! Пройди быструю регистрацию и пользуйся всеми возможностями приложения!",
+                    color: CustomColors.GreyLight,
+                    state: TextState.DescMedium
+                ),
+                new BoxView { HeightRequest = 20, BackgroundColor = CustomColors.Black },
                 registerButton
             }
             };
@@ -134,8 +178,8 @@ namespace IpPlanner.Screens.ProfileScreens
 
         private async void RegisterButton_Clicked(object sender, EventArgs e)
         {
-            // Если нужно, можно реализовать переход на страницу регистрации
-            //await Navigation.PushAsync(new RegisterScreen());
+            user = CustomUser.GetCurrentUser();
+            await Shell.Current.GoToAsync("//reg");
         }
     }
 }

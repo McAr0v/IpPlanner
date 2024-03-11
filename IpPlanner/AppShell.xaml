@@ -1,12 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+    
 <Shell
     x:Class="IpPlanner.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:IpPlanner"
+    xmlns:taskScreens="clr-namespace:IpPlanner.Screens.TaskScreens"
+    xmlns:ordersScreens="clr-namespace:IpPlanner.Screens.OrdersScreens"
+    xmlns:profileScreens="clr-namespace:IpPlanner.Screens.ProfileScreens"
+    xmlns:statScreens="clr-namespace:IpPlanner.Screens.StatScreens"
+    xmlns:userScreens="clr-namespace:IpPlanner.Screens.UserScreen"
     Shell.FlyoutBehavior="Disabled"
     Title="IpPlanner">
 
     
+
+    <TabBar>
+        <Tab Title="Заказы"
+            Icon="file_invoice_dollar_solid.png"
+             Route="orders">
+            <ShellContent ContentTemplate="{DataTemplate ordersScreens:OrdersScreen}" />
+        </Tab>
+
+        <Tab Title="Задачи"
+             Icon="list_check_solid.png"
+             Route="tasks">
+            <ShellContent ContentTemplate="{DataTemplate taskScreens:TaskScreen}" />
+        </Tab>
+
+        <Tab Title="Статистика"
+             Icon="chart_simple_solid.png"
+             Route="stat">
+            <ShellContent ContentTemplate="{DataTemplate statScreens:StatScreen}" />
+        </Tab>
+
+        <Tab Title="Профиль"
+            Icon="user_solid.png"
+            Route="profile" >
+            <ShellContent ContentTemplate="{DataTemplate profileScreens:ProfileScreens}" />
+        </Tab>
+    </TabBar>
+
+    <ShellContent Title="Вход"
+              Route="logIn"
+                  ContentTemplate="{DataTemplate userScreens:LogInScreen}" />
 
 </Shell>

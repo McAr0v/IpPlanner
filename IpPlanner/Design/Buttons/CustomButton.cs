@@ -9,7 +9,7 @@ namespace IpPlanner.Design.Buttons
 {
     public class CustomButton: Button
     {
-        public CustomButton(String text, EventHandler clickedHandler, ButtonState state) 
+        public CustomButton(String text, ButtonState state) 
         {
             switch (state) 
             {
@@ -42,7 +42,7 @@ namespace IpPlanner.Design.Buttons
             Text = text;
             CornerRadius = 10;
             Padding = new Thickness(20, 15);
-            Clicked += clickedHandler;
+           
         }
     }
 }

@@ -29,9 +29,13 @@ namespace IpPlanner.Screens.UserScreen
         {
                         
 
-            firstButton = new CustomButton(text: "Очистить", clickedHandler:  ClearLabels, state: ButtonState.Primary);
-            secondButton = new CustomButton(text: "Получить", clickedHandler: ReadDataFromFirebase, state: ButtonState.Secondary);
-            thirdButton = new CustomButton(text: "Отправить", clickedHandler: Button_Clicked, state: ButtonState.NotActive);
+            firstButton = new CustomButton(text: "Очистить",  state: ButtonState.Primary);
+            secondButton = new CustomButton(text: "Получить",  state: ButtonState.Secondary);
+            thirdButton = new CustomButton(text: "Отправить", state: ButtonState.NotActive);
+
+            firstButton.Clicked += ClearLabels;
+            secondButton.Clicked += ReadDataFromFirebase;
+            thirdButton.Clicked += Button_Clicked;
 
             stackLayoutButtons = new StackLayout
             {

@@ -1,5 +1,4 @@
-﻿using Firebase.Auth;
-using IpPlanner.DataBase.Auth;
+﻿using IpPlanner.DataBase.Auth;
 using IpPlanner.Design.Buttons;
 using IpPlanner.Design.Colors;
 using IpPlanner.Design.Entries;
@@ -10,19 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IpPlanner.Screens.UserScreen
+namespace IpPlanner.Screens.Layouts
 {
-    public class LogInScreen: ContentPage
+    public class LoginLayout
     {
-
-        public LogInScreen()
+        public static StackLayout CreateLayout()
         {
-            Content = LogInLayout();
-        }
-        
-        private StackLayout LogInLayout()
-        {
-
             Entry emailEntry = EntryCustom.CreateNewEntry(textInPlaceholder: "Введи свой Email", isEmail: true);
             Entry passwordEntry = EntryCustom.CreateNewEntry(textInPlaceholder: "Введи свой пароль", isPassword: true);
 
@@ -30,7 +22,7 @@ namespace IpPlanner.Screens.UserScreen
             Frame framePass = EntryFrame.GetFrameForEntry(passwordEntry);
 
             Button signInButton = new CustomButton(text: "Войти", state: ButtonState.Primary);
-            signInButton.Clicked += SignInButton_Clicked;
+            signInButton.Clicked += (sender, e) => SignInButton_Clicked(sender, e);
 
             return new StackLayout
             {
@@ -49,7 +41,6 @@ namespace IpPlanner.Screens.UserScreen
                         state: TextState.DescMedium
                         ),
                     new BoxView { HeightRequest = 30, BackgroundColor = CustomColors.Black }, // Пустое пространство в 20 пикселей
-                    //emailEntry,
                     frame,
                     new BoxView { HeightRequest = 10, BackgroundColor = CustomColors.Black }, // Пустое пространство в 20 пикселей
                     framePass,
@@ -63,17 +54,15 @@ namespace IpPlanner.Screens.UserScreen
                 var email = emailEntry.Text;
                 var password = passwordEntry.Text;
 
-                // Вызываем метод RegisterUser из класса AuthInDataBase
+                // Вызываем метод SignIn из класса AuthInDataBase
                 string result = await AuthInDataBase.SignIn(email, password);
 
-                if (result == "ok") 
+                if (result == "ok")
                 {
-                    //await Shell.Current.GoToAsync("//profile");
-                    await Shell.Current.Navigation.PopAsync();
+                    // Переходим на главную страницу (AppShell)
+                    //await Navigation.PushAsync(new AppShell());
                 }
-
             }
-
         }
     }
 }

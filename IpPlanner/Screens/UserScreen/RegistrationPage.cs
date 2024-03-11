@@ -53,7 +53,7 @@ namespace IpPlanner.Screens.UserScreen
             emailEntry = new Entry { Placeholder = "Email", Keyboard = Keyboard.Email };
             passwordEntry = new Entry { Placeholder = "Password", IsPassword = true };
             //registerButton = new Button { Text = "Register" };
-            registerButton = new CustomButton(text: "Зарегистрироваться", clickedHandler: RegisterButton_Clicked, state: ButtonState.Primary);
+            registerButton = new CustomButton(text: "Зарегистрироваться", state: ButtonState.Primary);
             signOutButton = new Button { Text = "Выйти" };
             signInButton = new Button { Text = "Войти" };
 
@@ -127,6 +127,8 @@ namespace IpPlanner.Screens.UserScreen
             user = CustomUser.GetCurrentUser();
 
             await DisplayAlert("Success", "Ты успешно вышел!", "OK");
+
+            await Navigation.PushAsync(new LogInScreen());
 
         }
 
